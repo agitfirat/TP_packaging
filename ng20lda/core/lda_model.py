@@ -187,3 +187,4 @@ def describe_document(document_path, model_path, n_topics=3, n_words=5):
         prob = topic_distribution[topic_idx]
         words = ', '.join(all_topics[topic_idx])
         description += f"Topic {rank} (probability: {prob:.3f}): {words}\n"
+    return description
