@@ -9,4 +9,5 @@ Welcome to the documentation for the ng20lda package.
 
    installation
    usage
+   documentation
    modules

@@ -1,7 +1,9 @@
 API Reference
 =============
 
+The API documentation is generated with ``sphinx-apidoc``.
+
 .. toctree::
    :maxdepth: 2
 
-   ng20lda
+   api/modules
