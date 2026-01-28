@@ -36,3 +36,21 @@ def main():
     
     # Load documents
     documents = load_documents_recursive(args.input_dir)
+
+    if len(documents) == 0:
+        raise SystemExit("Error: No documents found.")
+
+    # Vectorize documents
+    doc_term_matrix, vectorizer = vectorize_documents(documents)
+
+    # Train LDA model
+    lda_model = train_lda_model(doc_term_matrix, n_topics=args.n_topics)
+
+    # Ensure output directory exists
+    output_dir = os.path.dirname(args.output_path)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+
+    # Save model and vectorizer
+    save_model(lda_model, vectorizer, args.output_path)
+    print(f"Model saved to {args.output_path}")

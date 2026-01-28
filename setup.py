@@ -1,4 +1,7 @@
-@@ -6,43 +6,47 @@ with open("README.md", "r", encoding="utf-8") as fh:
+from setuptools import find_packages, setup
+
+
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
@@ -38,10 +41,6 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "ng20-fetch=ng20lda.cli.fetch_ng20:main",
-            "ng20-train=ng20lda.cli.train_lda:main",
-            "ng20-describe=ng20lda.cli.describe_doc:main",
-            "ng20-count=ng20lda.cli.count_lines:main",
             "ng20lda=ng20lda.cli.typer_app:app",
         ],
     },

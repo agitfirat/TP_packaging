@@ -54,4 +54,5 @@ def count_lines(filepath: str) -> int:
     Returns:
         int: Number of lines in the file.
     """
-    logger.info("Counting lines using legacy helper
+    logger.info("Counting lines using legacy helper.")
+    return count_lines_from_file(filepath)
