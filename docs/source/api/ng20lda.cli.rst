@@ -1,46 +1,35 @@
-ng20lda package
-===============
+ng20lda.cli package
+===================
 
-.. automodule:: ng20lda
+.. automodule:: ng20lda.cli
    :members:
    :undoc-members:
    :show-inheritance:
 
-CLI
----
+Submodules
+----------
 
 .. automodule:: ng20lda.cli.typer_app
    :members:
    :undoc-members:
    :show-inheritance:
 
-Core
-----
-
-.. automodule:: ng20lda.core.data_fetcher
+.. automodule:: ng20lda.cli.fetch_ng20
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: ng20lda.core.document_processor
+.. automodule:: ng20lda.cli.train_lda
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: ng20lda.core.lda_model
+.. automodule:: ng20lda.cli.describe_doc
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: ng20lda.core.utils
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-API
----
-
-.. automodule:: ng20lda.api
+.. automodule:: ng20lda.cli.count_lines
    :members:
    :undoc-members:
    :show-inheritance:
