@@ -34,7 +34,7 @@ def test_count_lines_from_file_hypothesis(lines: list[str], add_trailing_newline
 
     expected = len(text.splitlines())
 
-    with tempfile.NamedTemporaryFile(mode="w", delete=True, suffix=".txt") as tmp:
+    with tempfile.NamedTemporaryFile(mode="w", delete=True, suffix=".txt", encoding = "utf-8") as tmp:
         tmp.write(text)
         tmp.flush()
         assert count_lines_from_file(tmp.name) == expected
