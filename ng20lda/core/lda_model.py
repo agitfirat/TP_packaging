@@ -68,6 +68,7 @@ def load_model(model_path):
     Returns:
         tuple: (lda_model, vectorizer)
     """
+    logger.info("Loading model from %s", model_path)
     with open(model_path, 'rb') as f:
         model_data = pickle.load(f)
     
@@ -85,6 +86,7 @@ def get_top_words_per_topic(lda_model, vectorizer, n_words=5):
     Returns:
         list: List of lists containing top words for each topic.
     """
+    logger.info("Getting top %s words per topic", n_words)
     feature_names = vectorizer.get_feature_names_out()
     topics = []
     
