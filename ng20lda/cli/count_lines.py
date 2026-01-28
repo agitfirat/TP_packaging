@@ -2,11 +2,14 @@
 """CLI script to count lines in a file."""
 
 import argparse
+
+from ng20lda.config import configure_logging
 from ng20lda.core.utils import count_lines
 
 
 def main():
     """Main function for counting lines in a file."""
+    configure_logging()
     parser = argparse.ArgumentParser(
         description='Count the number of lines in a file'
     )

@@ -3,12 +3,15 @@
 
 import argparse
 import os
+
+from ng20lda.config import configure_logging
 from ng20lda.core.document_processor import load_documents_recursive, vectorize_documents
 from ng20lda.core.lda_model import train_lda_model, save_model
 
 
 def main():
     """Main function for training LDA model."""
+    configure_logging()
     parser = argparse.ArgumentParser(
         description='Train an LDA model on text documents'
     )
@@ -33,21 +36,3 @@ def main():
     
     # Load documents
     documents = load_documents_recursive(args.input_dir)
-    
-    if len(documents) == 0:
-        print("Error: No documents found!")
-        return
-    
-    # Vectorize documents
-    doc_term_matrix, vectorizer = vectorize_documents(documents)
-    
-    # Train LDA model
-    lda_model = train_lda_model(doc_term_matrix, n_topics=args.n_topics)
-    
-    # Save model
-    os.makedirs(os.path.dirname(args.output_path) or '.', exist_ok=True)
-    save_model(lda_model, vectorizer, args.output_path)
-
-
-if __name__ == '__main__':
-    main()

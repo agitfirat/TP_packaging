@@ -3,12 +3,19 @@
 
 import typer
 from pathlib import Path
+from ng20lda.config import configure_logging
 from ng20lda.core.data_fetcher import fetch_and_save_ng20
 from ng20lda.core.document_processor import load_documents_recursive, vectorize_documents
 from ng20lda.core.lda_model import train_lda_model, save_model, describe_document
 from ng20lda.core.utils import count_lines
 
 app = typer.Typer(help="20 Newsgroups LDA toolkit")
+
+
+@app.callback()
+def main():
+    """Initialize logging for CLI."""
+    configure_logging()
 
 
 @app.command()
@@ -35,37 +42,3 @@ def train(
     if len(documents) == 0:
         typer.echo("Error: No documents found!", err=True)
         raise typer.Exit(code=1)
-    
-    # Vectorize documents
-    doc_term_matrix, vectorizer = vectorize_documents(documents)
-    
-    # Train LDA model
-    lda_model = train_lda_model(doc_term_matrix, n_topics=n_topics)
-    
-    # Save model
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    save_model(lda_model, vectorizer, str(output_path))
-    typer.echo(f"✓ Model successfully trained and saved to {output_path}")
-
-
-@app.command()
-def describe(
-    document_path: Path = typer.Argument(..., help="Path to the document to describe", exists=True),
-    model_path: Path = typer.Argument(..., help="Path to the trained model", exists=True)
-):
-    """Describe a document using a trained LDA model."""
-    description = describe_document(str(document_path), str(model_path))
-    typer.echo(description)
-
-
-@app.command()
-def count(
-    filepath: Path = typer.Argument(..., help="Path to the file", exists=True)
-):
-    """Count the number of lines in a file."""
-    num_lines = count_lines(str(filepath))
-    typer.echo(f"Number of lines: {num_lines}")
-
-
-if __name__ == "__main__":
-    app()

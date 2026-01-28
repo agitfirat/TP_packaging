@@ -2,11 +2,14 @@
 """CLI script to fetch and save 20newsgroups documents."""
 
 import argparse
+
+from ng20lda.config import configure_logging
 from ng20lda.core.data_fetcher import fetch_and_save_ng20
 
 
 def main():
     """Main function for fetching 20newsgroups data."""
+    configure_logging()
     parser = argparse.ArgumentParser(
         description='Fetch N documents from a 20newsgroups category'
     )
@@ -32,4 +35,3 @@ def main():
 
 
 if __name__ == '__main__':
-    main()

@@ -2,11 +2,14 @@
 """CLI script to describe a document using a trained LDA model."""
 
 import argparse
+
+from ng20lda.config import configure_logging
 from ng20lda.core.lda_model import describe_document
 
 
 def main():
     """Main function for describing a document."""
+    configure_logging()
     parser = argparse.ArgumentParser(
         description='Describe a document using a trained LDA model'
     )

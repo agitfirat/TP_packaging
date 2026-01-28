@@ -1,8 +1,4 @@
-"""Setup configuration for ng20lda package."""
-
-from setuptools import setup, find_packages
-
-with open("README.md", "r", encoding="utf-8") as fh:
+@@ -6,43 +6,47 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
@@ -28,10 +24,14 @@ setup(
         "scikit-learn>=1.0.0",
         "numpy>=1.20.0",
         "typer>=0.9.0",
+        "fastapi>=0.110.0",
+        "uvicorn>=0.27.0",
+        "matplotlib>=3.7.0",
     ],
     extras_require={
         "dev": [
             "pytest>=7.0.0",
+            "hypothesis>=6.0.0",
             "sphinx>=5.0.0",
             "sphinx-rtd-theme>=1.0.0",
         ],

@@ -1,7 +1,11 @@
 """Functions for processing documents."""
 
+import logging
 import os
+
 from sklearn.feature_extraction.text import CountVectorizer
+
+logger = logging.getLogger(__name__)
 
 
 def load_documents_recursive(directory):
@@ -13,6 +17,7 @@ def load_documents_recursive(directory):
     Returns:
         list: List of document contents as strings.
     """
+    logger.info("Loading documents recursively from %s", directory)
     documents = []
     
     for root, dirs, files in os.walk(directory):
@@ -22,7 +27,7 @@ def load_documents_recursive(directory):
                 with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
                     documents.append(f.read())
     
-    print(f"Loaded {len(documents)} documents from {directory}")
+    logger.info("Loaded %s documents from %s", len(documents), directory)
     return documents
 
 
@@ -44,6 +49,10 @@ def vectorize_documents(documents, max_features=1000):
     )
     
     doc_term_matrix = vectorizer.fit_transform(documents)
-    print(f"Vectorized {len(documents)} documents with {doc_term_matrix.shape[1]} features")
+    logger.info(
+        "Vectorized %s documents with %s features",
+        len(documents),
+        doc_term_matrix.shape[1],
+    )
     
     return doc_term_matrix, vectorizer
